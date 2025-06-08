@@ -1,0 +1,45 @@
+{
+  "name": "inline-style-extractor",
+  "displayName": "Inline Style Extractor",
+  "description": "A VS Code extension to extract inline styles from HTML, JSX and TSX elements and copy them to clipboard as CSS.",
+  "version": "0.1.0",
+  "publisher": "SaarBenHaim",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "activationEvents": [
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
+    "onLanguage:html"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.extractInlineStyles",
+          "when": "editorLangId == html || editorLangId == javascriptreact || editorLangId == typescriptreact",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "watch": "vite build --watch",
+    "lint": "eslint ./src --ext .ts",
+    "prepublishOnly": "npm run build",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.81.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^4.0.0",
+    "vite": "^5.2.0",
+    "vsce": "^2.15.0"
+  }
+}
