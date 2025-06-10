@@ -2,7 +2,7 @@
   "name": "inline-style-extractor",
   "displayName": "Inline Style Extractor",
   "description": "A VS Code extension to extract inline styles from HTML, jsx and tsx elements and copy them to clipboard as CSS.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "SaarBenHaim",
   "license": "MIT",
   "repository": {
