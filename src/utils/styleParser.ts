@@ -53,8 +53,22 @@ function camelToKebab(str: string): string {
     return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
 }
 
+const unitlessProps = new Set([
+    'lineHeight', 'zIndex', 'opacity', 'fontWeight', 'flex', 'flexGrow', 'flexShrink', 'order'
+]);
+
 export function convertToCSS(styles: StyleObject): string {
     return Object.entries(styles)
-        .map(([property, value]) => `${camelToKebab(property)}: ${value};`)
+        .map(([property, value]) => {
+            const cssProp = camelToKebab(property);
+            // If value is a number or numeric string and property is not unitless, add 'px'
+            if (
+                (typeof value === 'number' || (typeof value === 'string' && !isNaN(Number(value)))) &&
+                !unitlessProps.has(property)
+            ) {
+                return `${cssProp}: ${value}px;`;
+            }
+            return `${cssProp}: ${value};`;
+        })
         .join('\n');
 }
