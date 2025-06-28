@@ -2,7 +2,7 @@
   "name": "inline-style-extractor",
   "displayName": "Inline Style Extractor",
   "description": "A VS Code extension to extract inline styles from HTML, jsx and tsx elements and copy them to clipboard as CSS.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "SaarBenHaim",
   "license": "MIT",
   "repository": {
@@ -10,7 +10,7 @@
     "url": "https://github.com/SaarBenHaim/inline-style-extractor.git"
   },
   "engines": {
-    "vscode": "^1.81.0"
+    "vscode": "^1.101.0"
   },
   "activationEvents": [
     "onLanguage:javascriptreact",
@@ -19,10 +19,25 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "extension.extractInlineStyles",
+        "title": "Copy Inline Styles as CSS"
+      },
+      {
+        "command": "extension.extractInlineStylesAsClass",
+        "title": "Copy Inline Styles as CSS Class"
+      }
+    ],
     "menus": {
       "editor/context": [
         {
           "command": "extension.extractInlineStyles",
+          "when": "editorLangId == html || editorLangId == javascriptreact || editorLangId == typescriptreact",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.extractInlineStylesAsClass",
           "when": "editorLangId == html || editorLangId == javascriptreact || editorLangId == typescriptreact",
           "group": "navigation"
         }
@@ -39,7 +54,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@types/vscode": "^1.81.0",
+    "@types/vscode": "^1.101.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.0.0",
